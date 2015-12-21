@@ -1,0 +1,46 @@
+<div class="container">
+<div class="row">
+  <div class="col-md-12">
+          <div class="input-group" id="adv-search">
+            <input type="text" ng-model="query[queryBy]" class="form-control" placeholder="Search..."></input>
+              <div class="input-group-btn">
+                  <div class="btn-group" role="group">
+                      <div class="dropdown dropdown-lg">
+                          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                          <div class="dropdown-menu dropdown-menu-right" role="menu">
+                              <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                  <label for="filter">Filter by</label>
+                                  <select ng-model="queryBy" class="form-control">
+                                      <option value="$"></option>
+                                      <option value="givenName">Name</option>
+                                      <option value=""></option>
+                                  </select>
+                                </div>
+                              </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+</div>
+<br>
+  <table id="drivers" class="table table-nonfluid table-hover table-condensed table-borderless">
+    <thead>
+      <tr><th colspan="4">Drivers Championship Standings</th></tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="driver in driversList | filter: query">
+        <td>{{$index + 1}}</td>
+        <td>
+          <img src="img/flags/{{driver.Driver.nationality}}.png" />
+          {{driver.Driver.givenName}}&nbsp;{{driver.Driver.familyName}}
+        </td>
+        <td>{{driver.Constructors[0].name}}</td>
+        <td>{{driver.points}}</td>
+      </tr>
+    </tbody>
+  </table>
+$("drivers").jExpand();
